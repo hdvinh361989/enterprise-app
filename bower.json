@@ -1,0 +1,24 @@
+{
+  "name": "Enterpise App",
+  "description": "",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-loader": "~1.4.0",
+    "angular-mocks": "~1.4.0",
+    "html5-boilerplate": "~5.2.0",
+    "angular-animate": "^1.5.0",
+    "angular-ui-router": "^0.2.18",
+    "traceur": "^0.0.102",
+    "system.js": "^0.19.23",
+    "angular-material": "^1.0.6",
+    "angular-component-router": "^0.2.1",
+    "oclazyload": "^1.0.9",
+    "angular-aria": "^1.5.3"
+  },
+  "resolutions": {
+    "angular": "1.5.3"
+  }
+}

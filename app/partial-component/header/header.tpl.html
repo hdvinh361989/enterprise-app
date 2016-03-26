@@ -1,0 +1,64 @@
+<div class="vt-header-wrapper">
+  <div class="md-whiteframe-2dp">
+
+    <!--Menu icon button-->
+    <md-fab-toolbar md-open="$ctrl.toolbarFab.isOpen"
+                    ng-class="{'highest-priority': $ctrl.toolbarFab.isOpen}"
+                    md-direction="right" flex>
+      <md-fab-trigger class="align-with-text">
+        <md-button aria-label="menu" class="md-fab md-primary">
+          <md-icon class="material-icons">menu</md-icon>
+        </md-button>
+      </md-fab-trigger>
+      <md-toolbar>
+        <md-fab-actions class="md-toolbar-tools">
+          <a aria-label="comment" class="md-button"
+             ng-repeat="item in $ctrl.menus track by item.label"
+          >
+            {{::item.label}}
+          </a>
+      </md-toolbar>
+    </md-fab-toolbar>
+
+    <!--Control box and user avatar-->
+    <div class="md-toolbar-tools">
+      <div flex flex-offset="5" layout="row">
+        <!--Logo-->
+        <div class="logo-container"><img ng-src="{{::$ctrl.logo}}" width="100"></div>
+
+        <!--Control box-->
+        <div id="controls-wrapper" flex layout="row" layout-align="center">
+          <md-button aria-label="{{button.label}}"
+                     ng-repeat="button in $ctrl.controlButtons track by $index"
+                     ng-click="button.click($event)"
+          >
+            {{::button.label}}
+          </md-button>
+        </div>
+
+        <!--User avatar and user setting control-->
+        <div id="user-avatar-wrapper">
+          <md-fab-speed-dial md-direction="{{$ctrl.userFab.direction}}"
+                             md-open="$ctrl.userFab.isOpen"
+                             ng-class="[$ctrl.userFab.animationMode]">
+            <md-fab-trigger>
+              <img ng-src="{{$ctrl.userFab.avatar}}" class="vt-avatar md-fab cursor-pointer">
+            </md-fab-trigger>
+
+            <md-fab-actions>
+              <div ng-repeat="action in $ctrl.userFab.actions track by $index">
+                <md-button ng-click="action.click($event)"
+                           aria-label="{{::action.label}}"
+                           class="md-fab md-raised md-mini">
+                  <md-tooltip md-direction="{{::action.tooltipDirection}}">{{::action.tooltip}}</md-tooltip>
+                  <md-icon md-font-icon aria-label="{{::action.label}}">{{::action.icon}}</md-icon>
+                </md-button>
+              </div>
+            </md-fab-actions>
+
+          </md-fab-speed-dial>
+        </div><!--End #user-avatar-wrapper-->
+      </div>
+    </div><!--End md-toolbar-tools-->
+  </div><!--End md-whiteframe-2dp-->
+</div>

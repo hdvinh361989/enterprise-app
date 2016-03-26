@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Enterprise App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="libs/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="libs/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="libs/angular-material/angular-material.min.css">
+  <link rel="stylesheet" href="public/css/app.css">
+
+
+  <script src="libs/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <script src="libs/angular/angular.js"></script>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>-->
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>-->
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>-->
+  <script src="libs/system.js/dist/system.js"></script>
+  <script src="libs/traceur/traceur.min.js"></script>
+  <script src="libs/angular-component-router/angular_1_router.js"></script>
+  <!--<script src="libs/angular-component-router/ng_route_shim.js"></script>-->
+
+  <!--Config system.js-->
+  <script>
+    System.config({
+      baseURL: '/',
+      defaultJSExtensions: 'js',
+      transpiler: 'traceur',
+      traceurOptions: {},
+      map: {
+        traceur: './lib/traceur/traceur.min.js',
+        App: './app.js'
+      },
+      depCache: {}
+    });
+
+    System.import('App');
+  </script>
+</head>
+<body ng-cloak>
+
+<root-app></root-app>
+
+</body>
+</html>
