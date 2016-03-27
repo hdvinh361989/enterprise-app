@@ -206,8 +206,10 @@ vt-holds{
 }
 
 .search-list-wrapper .list-wrapper md-list md-list-item {
-    padding-bottom: 8px;
-    padding-top: 8px;
+    padding-bottom: 16px;
+}
+vt-search-list .search-input md-input-container{
+    margin-bottom: 0px;
 }
 
 /*End Search-list-component*/
