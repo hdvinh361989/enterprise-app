@@ -22,6 +22,7 @@ export class RootAppComponent {
       {
         path: '/holds', loader: function () {
         return System.import('./components/holds/holds.component').then((m)=> {
+          //Must return a component name
           return $ocLazyLoad.load(m.HoldsComponent).then(()=> m.HoldsComponent.compName)
         })
       }, name: 'Holds', useAsDefault: true

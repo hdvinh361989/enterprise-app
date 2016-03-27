@@ -9,9 +9,10 @@ class HeaderComp {
 
     dir.restrict = 'E';
     dir.controller = HeaderCompController;
-    dir.bindToController = true;
-
     dir.templateUrl = './partial-component/header/header.tpl.html';
+    dir.bindings = {
+      options: '='
+    }
   }
 }
 
@@ -19,76 +20,78 @@ class HeaderComp {
 class HeaderCompController {
   constructor() {
     let ctrl = this;
-    let defaultMenus, defaultUserFab, defaultToolbarFab, defaultLogo,
-      defaultButtons;
+    let defaultOptions, DIRECTION_BOTTOM = 'bottom';
 
-    //Menu
-    defaultMenus = [
-      {
-        label: 'Holds',
-        routeName: 'Holds'
-      },
-      {
-        label: 'VC',
-        route: 'VC'
-      }
-    ];
-    ctrl.menus = ctrl.menu ? angular.merge(defaultMenus, ctrl.menu) : defaultMenus;
-
-    //UserFab
-    defaultUserFab = {
-      isOpen: false,
-      direction: 'down',
-      avatar: 'public/image/jessica.jpg',
-
-      //Possible value: md-fling, md-scale
-      animationMode: 'md-fling',
-      actions: [
-        {
-          label: 'Setting',
-          tooltip: undefined,
-          tooltipDirection: 'left',
-          click: emptyFn,
-          icon: 'settings'
-        },
-        {
-          label: 'Logout',
-          tooltip: undefined,
-          tooltipDirection: 'left',
-          click: emptyFn,
-          icon: 'undo'
+    defaultOptions = {
+      /**
+       * Menu
+       * Possible value
+       * {
+          label: 'Holds',
+          routeName: 'Holds'
         }
-      ]
-    };
-    ctrl.userFab = ctrl.userFab ? angular.merge(defaultUserFab, ctrl.userFab) : defaultUserFab;
-    angular.forEach(ctrl.userFab.actions, (act)=> act.tooltip = act.tooltip || act.label);
+       * */
+      menus: [],
 
-    //ToolbarFab
-    defaultToolbarFab = {
-      isOpen: false
-    };
-    ctrl.toolbarFab = ctrl.toolbarFab ? angular.merge(defaultToolbarFab, ctrl.toolbarFab) : defaultToolbarFab;
+      /**
+       * UserFab
+       * */
+      userFab: {
+        isOpen: false,
+        direction: 'down',
+        avatar: 'public/image/jessica.jpg',
 
-    //Logo
-    defaultLogo = 'public/logo.jpg';
-    ctrl.logo = ctrl.logo ? angular.merge(defaultLogo, ctrl.logo) : defaultLogo;
+        /**
+         * Possible value: md-fling, md-scale
+         * */
+        animationMode: 'md-fling',
 
-    //Buttons
-    defaultButtons = [
-      {
-        label: 'Add',
-        click: emptyFn
+        /**
+         * Possible value
+         * {
+         label: 'Setting',
+         tooltip: undefined,
+         tooltipDirection: 'left',
+         click: emptyFn,
+         icon: 'settings'
+         }
+         * */
+        actions: []
       },
-      {
-        label: 'Save',
-        click: emptyFn
+
+      /**
+       * ToolbarFab
+       * */
+      toolbarFab: {
+        isOpen: false
       },
-      {
-        label: 'Edit',
-        click: emptyFn
-      }
-    ];
-    ctrl.controlButtons = ctrl.buttons ? angular.extend(defaultButtons, ctrl.buttons) : defaultButtons;
+
+      /**
+       * Logo
+       * */
+      logo: 'public/logo.jpg',
+
+
+      /**Buttons
+       * Possible value
+       * {
+          label: 'add',
+          click: emptyFn,
+          tooltip: 'Add new entiry'
+        }
+       * */
+      controlButtons: [],
+
+      /**
+       * Process bar
+       * */
+      showProcessBar: false
+    };
+    ctrl.options = ctrl.options && Object.keys(ctrl.options).length > 0 ? angular.merge(defaultOptions, ctrl.options) : defaultOptions;
+
+    angular.forEach(ctrl.options.controlButtons, (v)=> {
+      v.tooltipDirection = v.tooltipDirection || DIRECTION_BOTTOM;
+    });
   }
 }
 HeaderCompController.$inject = [];
@@ -97,7 +100,10 @@ function emptyFn() {
 }
 
 
-export let HeaderComponent = angular.module(MODULE_NAME, [])
+angular.module(MODULE_NAME, [])
   .component(COMPONENT_NAME, new HeaderComp());
 
-HeaderComponent.name = MODULE_NAME;
+export let HeaderComponent = {
+  name: MODULE_NAME,
+  compName: COMPONENT_NAME
+};

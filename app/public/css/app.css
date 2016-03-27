@@ -1,125 +1,142 @@
 /* app css stylesheet */
 @font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: url(http://localhost:8000/public/fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
-  src: local('Material Icons'),
-  local('MaterialIcons-Regular'),
-  url(http://localhost:8000/public/fonts/MaterialIcons-Regular.woff2) format('woff2'),
-  url(http://localhost:8000/public/fonts/MaterialIcons-Regular.woff) format('woff'),
-  url(http://localhost:8000/public/fonts/MaterialIcons-Regular.ttf) format('truetype');
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(http://localhost:8000/public/fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(http://localhost:8000/public/fonts/MaterialIcons-Regular.woff2) format('woff2'),
+    url(http://localhost:8000/public/fonts/MaterialIcons-Regular.woff) format('woff'),
+    url(http://localhost:8000/public/fonts/MaterialIcons-Regular.ttf) format('truetype');
 }
 
 .material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
 }
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+/*Ulti*/
+.capitalize {
+    text-transform: capitalize;
 }
 
-.menu:before {
-  content: "[";
+.relative {
+    position: relative;
 }
 
-.menu:after {
-  content: "]";
+.highest-priority {
+    z-index: 100;
 }
 
-.menu > li {
-  display: inline;
+.medium-priority {
+    z-index: 50;
 }
+.shadow-right-3dp {
+    box-shadow: 8px 1px 8px -5px rgba(0, 0, 0, 0.2), 6px 3px 4px -5px rgba(0, 0, 0, 0.14), 4px 3px 3px -5px rgba(0, 0, 0, 0.12);}
 
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
-}
-
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
-}
-.highest-priority{
-  z-index: 100;
-}
-.medium-priority{
-  z-index: 50;
-}
-
-.vt-avatar{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  box-sizing: content-box;
+.vt-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-sizing: content-box;
 
 }
-.vt-header-wrapper .md-toolbar-tools .md-button{
-  margin-top: 8px;
-  margin-bottom: 8px;
+
+.border-bottom-blue{
+    border-bottom: solid 2px rgb(63, 81, 181);
 }
-.vt-header-wrapper .md-toolbar-tools{
-  height: 68px;
-  max-height:68px;
+/*End Ultil*/
+
+
+/*Process linear*/
+.vt-header-wrapper md-progress-linear,
+.vt-header-wrapper md-progress-linear .md-container {
+    height: 3px;
 }
-.vt-header-wrapper md-fab-toolbar{
-  position: absolute;
-  top:0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+/*End process linear*/
+
+
+.vt-header-wrapper md-fab-speed-dial .md-button {
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
-.cursor-pointer{
-  cursor: pointer;
-}
-#user-avatar-wrapper{
-  position: relative;
-}
-#user-avatar-wrapper md-fab-speed-dial{
-  max-height: 68px;
-  top: 8px;
-}
-.logo-container{
-  padding: 10px 0;
+.vt-header-wrapper .md-toolbar-tools {
+    height: 68px;
+    max-height: 68px;
 }
 
-.animate-clip{
-
-}
-.animate-clip.ng-enter{
-  transition:All 2s ease;
-  -webkit-transition:All 2s ease;
-  -moz-transition:All 2s ease;
-  -o-transition:All 2s ease;
-  clip: rect(0px,960px,68px,960px);
-}
-.animate-clip.ng-enter.ng-enter-active{
-  clip: rect(0px,960px,68px,0px)
+.vt-header-wrapper md-fab-toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
-.animate-clip.ng-leave{
-  transition:All 2s ease;
-  -webkit-transition:All 2s ease;
-  -moz-transition:All 2s ease;
-  -o-transition:All 2s ease;
-  clip: rect(0px,960px,68px,0px)
+.vt-header-wrapper md-fab-toolbar md-fab-actions .md-button,
+.vt-header-wrapper .controls-wrapper .md-button {
+    width: 68px;
+    height: 68px;
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+    margin-bottom: 0;
 }
-.animate-clip.ng-leave.ng-leave-active{
-  clip: rect(0px,960px,68px,960px);
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.user-avatar-wrapper {
+
+}
+
+.user-avatar-wrapper md-fab-speed-dial {
+    max-height: 68px;
+    top: 8px;
+}
+
+.logo-container {
+    padding: 10px 0;
+}
+
+.animate-clip {
+
+}
+
+.animate-clip.ng-enter {
+    transition: All 2s ease;
+    -webkit-transition: All 2s ease;
+    -moz-transition: All 2s ease;
+    -o-transition: All 2s ease;
+    clip: rect(0px, 960px, 68px, 960px);
+}
+
+.animate-clip.ng-enter.ng-enter-active {
+    clip: rect(0px, 960px, 68px, 0px)
+}
+
+.animate-clip.ng-leave {
+    transition: All 2s ease;
+    -webkit-transition: All 2s ease;
+    -moz-transition: All 2s ease;
+    -o-transition: All 2s ease;
+    clip: rect(0px, 960px, 68px, 0px)
+}
+
+.animate-clip.ng-leave.ng-leave-active {
+    clip: rect(0px, 960px, 68px, 960px);
 }
