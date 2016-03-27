@@ -9,7 +9,7 @@
   "scripts": {
     "postinstall": "bower install",
     "prestart": "npm install",
-    "live-start": "lite-server -C bs-config.json",
+    "live-start": "lite-server -C bs-config1.json",
     "start-old": "http-server ./app -c-1",
     "start": "lite-server -C bs-config.json",
     "pretest": "npm install",
