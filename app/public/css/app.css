@@ -27,6 +27,56 @@
     -webkit-font-smoothing: antialiased;
 }
 
+/*Common*/
+vt-holds{
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(63,81,181,0.4);
+    border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(63,81,181,1)
+}
+::-webkit-scrollbar-thumb:active {
+    background: rgba(63,81,181,1)
+}
+::-webkit-scrollbar-track {
+    background: #ffffff;
+    border: 0px none #d03131;
+    border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+    background: #efefef;
+}
+::-webkit-scrollbar-track:active {
+    background: #efefef;
+}
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+/*End common*/
+
 /*Ulti*/
 .capitalize {
     text-transform: capitalize;
@@ -43,8 +93,10 @@
 .medium-priority {
     z-index: 50;
 }
+
 .shadow-right-3dp {
-    box-shadow: 8px 1px 8px -5px rgba(0, 0, 0, 0.2), 6px 3px 4px -5px rgba(0, 0, 0, 0.14), 4px 3px 3px -5px rgba(0, 0, 0, 0.12);}
+    box-shadow: 8px 1px 8px -5px rgba(0, 0, 0, 0.2), 6px 3px 4px -5px rgba(0, 0, 0, 0.14), 4px 3px 3px -5px rgba(0, 0, 0, 0.12);
+}
 
 .vt-avatar {
     width: 50px;
@@ -54,19 +106,19 @@
 
 }
 
-.border-bottom-blue{
+.border-bottom-blue {
     border-bottom: solid 2px rgb(63, 81, 181);
 }
-/*End Ultil*/
 
+/*End Ultil*/
 
 /*Process linear*/
 .vt-header-wrapper md-progress-linear,
 .vt-header-wrapper md-progress-linear .md-container {
     height: 3px;
 }
-/*End process linear*/
 
+/*End process linear*/
 
 .vt-header-wrapper md-fab-speed-dial .md-button {
     margin-top: 8px;
@@ -140,3 +192,22 @@
 .animate-clip.ng-leave.ng-leave-active {
     clip: rect(0px, 960px, 68px, 960px);
 }
+
+/*Three column*/
+.three-column-wrapper .three-column-row .three-column-col {
+    overflow-y: auto;;
+}
+/*End Three column*/
+
+
+/*Search-list-component*/
+.search-list-wrapper .list-wrapper md-list md-list-item .md-list-item-text p {
+    padding-top: 8px;
+}
+
+.search-list-wrapper .list-wrapper md-list md-list-item {
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+/*End Search-list-component*/

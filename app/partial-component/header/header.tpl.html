@@ -1,5 +1,5 @@
 <div class="vt-header-wrapper">
-  <div class="md-whiteframe-4dp">
+  <div class="md-whiteframe-4dp border-bottom-blue">
 
     <!--Menu icon button-->
     <div class="relative">
@@ -50,6 +50,7 @@
                              md-open="$ctrl.options.userFab.isOpen"
                              ng-class="[$ctrl.options.userFab.animationMode]">
             <md-fab-trigger>
+              <md-tooltip md-direction="left">User Setting</md-tooltip>
               <img ng-src="{{$ctrl.options.userFab.avatar}}" class="vt-avatar md-fab cursor-pointer">
             </md-fab-trigger>
 
@@ -58,7 +59,9 @@
                 <md-button ng-click="action.click($event)"
                            aria-label="{{::action.label}}"
                            class="md-fab md-raised md-mini">
-                  <md-tooltip md-direction="{{::action.tooltipDirection}}">{{::action.tooltip}}</md-tooltip>
+                  <md-tooltip md-direction="{{::action.tooltipDirection}}">
+                    {{::action.tooltip || action.label}}
+                  </md-tooltip>
                   <md-icon md-font-icon aria-label="{{::action.label}}">{{::action.icon}}</md-icon>
                 </md-button>
               </div>

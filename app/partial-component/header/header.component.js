@@ -5,12 +5,12 @@ let MODULE_NAME = 'vtcomponents.header', COMPONENT_NAME = 'vtHeader';
 
 class HeaderComp {
   constructor() {
-    let dir = this;
+    let comp = this;
 
-    dir.restrict = 'E';
-    dir.controller = HeaderCompController;
-    dir.templateUrl = './partial-component/header/header.tpl.html';
-    dir.bindings = {
+    comp.restrict = 'E';
+    comp.controller = HeaderCompController;
+    comp.templateUrl = './partial-component/header/header.tpl.html';
+    comp.bindings = {
       options: '='
     }
   }

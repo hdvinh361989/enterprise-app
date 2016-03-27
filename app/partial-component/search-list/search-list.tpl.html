@@ -1,10 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="search-list-wrapper" >
+  <!--Search box-->
+  <div class="search-input">
+    <md-input-container class="md-icon-float md-icon-right md-block">
+      <label>Search by Name/Email</label>
+      <input type="text" name="txtSearch" id="txtSearch"
+             ng-model="$ctrl.searchQuery"
+             ng-change="$ctrl.onSearch($event)"
+      >
 
-</body>
-</html>
+      <md-icon md-font-icon aria-label="search">
+        search
+      </md-icon>
+    </md-input-container>
+  </div><!--End Search box-->
+
+  <!--List box-->
+  <div class="list-wrapper">
+    <md-list>
+      <md-list-item class="md-3-line"
+                    ng-repeat="item in $ctrl.dataset | filter: $ctrl.searchQuery track by item.id"
+      >
+        <md-switch class="md-secondary" ng-model="item.status"></md-switch>
+
+        <div class="md-list-item-text" layout="column">
+          <h3>{{item.name}}</h3>
+
+          <h4>
+              <md-tooltip md-direction="bottom">Level</md-tooltip>
+              {{item.level}}
+          </h4>
+
+          <p layout="row">
+            <span flex>
+              <md-tooltip md-direction="bottom">Effective from</md-tooltip>
+              <md-icon md-font-icon>date_range</md-icon>
+              <span>{{item.effectiveFrom | date: 'MMM dd'}}</span>
+            </span>
+
+            <span flex>
+              <md-tooltip md-direction="bottom">Effective to</md-tooltip>
+              <md-icon md-font-icon>date_range</md-icon>
+              <span>{{item.effectiveTo | date: 'MMM dd'}}</span>
+            </span>
+          </p>
+        </div>
+
+        <md-divider ></md-divider>
+      </md-list-item>
+    </md-list>
+
+
+    <!--<md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Vinh Hoang</span>
+        </md-card-title-text>
+      </md-card-title>
+
+      <md-card-content>
+        <div layout="row" layout-margin>
+          <div flex>
+            <span>
+              <md-tooltip md-direction="right">Level</md-tooltip>
+              POB
+            </span>
+          </div>
+          <div flex>
+            <span ng-class="[item.status]">
+              <md-tooltip md-direction="right">Status</md-tooltip>
+                  {{::item.status || 'Active'}}
+            </span>
+          </div>
+        </div>
+
+        <div layout="row" layout-margin>
+          <div flex>
+            <span>
+              <md-tooltip md-direction="down">Effective from</md-tooltip>
+              <md-icon md-font-icon>date_range</md-icon>
+              {{1288323623006 | date: 'MMM dd'}}
+            </span>
+          </div>
+          <div flex>
+            <span ng-class="[item.status]">
+              <md-tooltip md-direction="right">Status</md-tooltip>
+                  {{::item.status || 'Active'}}
+            </span>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>-->
+  </div>
+</div>

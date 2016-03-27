@@ -14,7 +14,9 @@ export class RootAppComponent {
     let comp = this;
 
     comp.template = `
-    <ng-outlet></ng-outlet>
+    <div class="root-app-wrapper" layout="column" layout-fill>
+      <ng-outlet flex="" layout="column" layout-fill=""></ng-outlet>
+    </div>
     `;
 
 

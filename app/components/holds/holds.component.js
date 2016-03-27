@@ -3,6 +3,10 @@
  */
 import {HeaderComponent} from '../../partial-component/header/header.component'
 import {ThreeColumn} from '../../partial-component/three-column/three-column'
+import {SearchList} from '../../partial-component/search-list/search-list.component'
+import {FormGenerator} from '../../partial-component/form-generator/form-generator.component'
+
+import {HoldsService} from './holds.service'
 
 let MODULE_NAME = 'component.holds';
 let COMPONENT_NAME = 'vtHolds';
@@ -12,13 +16,15 @@ class HoldsComp {
     let comp = this;
 
     comp.template = `
-    <vt-header options="$ctrl.options"></vt-header>
+    <div flex="" layout="column" layout-fill="">
+        <vt-header  options="$ctrl.headerOptions"></vt-header>
 
-    <vt-three-column>
-      <column1>Column 1</column1>
-      <column2>Column 2</column2>
-      <column3>Column 3</column3>
-    </vt-three-column>
+        <vt-three-column flex layout="column">
+          <column1> <vt-search-list option="$ctrl.searchOptions" dataset="$ctrl.holds"></vt-search-list> </column1>
+          <column2><vt-form-generator></vt-form-generator></column2>
+          <column3>Column 3</column3>
+      </vt-three-column>
+    </div>
     `;
     comp.controller = HoldsCompController;
   }
@@ -29,10 +35,10 @@ class HoldsComp {
 }
 
 class HoldsCompController {
-  constructor() {
+  constructor(holdSer) {
     let ctrl = this;
 
-    ctrl.options = {
+    ctrl.headerOptions = {
       menus: [
         {
           label: 'Holds',
@@ -79,16 +85,21 @@ class HoldsCompController {
         }
       ]
     };
+    ctrl.searchOptions = {};
+
+    holdSer.getHolds().then((data)=> ctrl.holds = data);
   }
 }
-HoldsCompController.$inject = [];
+HoldsCompController.$inject = [HoldsService.name];
 
 function emptyFn() {
 }
 
 angular
-  .module(MODULE_NAME, [HeaderComponent.name, ThreeColumn.name])
-  .component(HoldsComp.name, new HoldsComp());
+  .module(MODULE_NAME, [HeaderComponent.name, ThreeColumn.name
+    , SearchList.name, FormGenerator.name])
+  .component(HoldsComp.name, new HoldsComp())
+  .service(HoldsService.name, HoldsService)
 
 export let HoldsComponent = {
   name: MODULE_NAME,

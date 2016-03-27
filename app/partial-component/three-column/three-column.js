@@ -1,7 +1,7 @@
 /**
  * Created by vinhhoang on 27/03/2016.
  */
-let MODULE_NAME = 'threeColumn', COMPONENT_NAME = 'vtThreeColumn';
+let MODULE_NAME = 'vtcomponents.threeColumn', COMPONENT_NAME = 'vtThreeColumn';
 
 class ThreeColumnComp {
   constructor() {
