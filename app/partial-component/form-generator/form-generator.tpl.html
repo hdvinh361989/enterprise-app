@@ -1,10 +1,113 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="vt-fgen-wrapper">
+  <div layout-padding="">
+    <!--<div>
+      {{$ctrl.ngModel}}
+    </div>-->
 
-</body>
-</html>
+    <form name="{{::$ctrl.formName}}">
+      <div ng-repeat="field in $ctrl.vtFields track by $index">
+        <ng-include src="$ctrl.getLayoutTemplate(field)"></ng-include>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!--Type !== special inputs-->
+<script type="text/ng-template" id="/commonInput.html">
+
+  <md-input-container class="md-block">
+
+    <ng-include src="'/label.html'"></ng-include>
+
+    <input ng-if="!$ctrl.isSpecialInput(field.type)" aria-label="{{::field.label}}"
+           type="{{field.type}}" name="{{field.key}}"
+           ng-model="$ctrl.ngModel[field.key]" vt-validate="field.validates"
+    >
+
+    <ng-include src="'/messages.html'"></ng-include>
+  </md-input-container>
+</script>
+
+
+<!--Type = select-->
+<script type="text/ng-template" id="/selectInput.html">
+  <md-input-container class="md-block">
+
+    <ng-include src="'/label.html'"></ng-include>
+
+    <md-select ng-if="field.type === 'select'" aria-label="{{field.label}}"
+               ng-model="$ctrl.ngModel[field.key]">
+      <md-option ng-repeat="option in field.options track by $index"
+                 value="{{::$ctrl.isObject(option) ? option.value : option}}">
+        {{::$ctrl.isObject(option) ? option.label || option.value : option}}
+      </md-option>
+    </md-select>
+
+    <ng-include src="'/messages.html'"></ng-include>
+  </md-input-container>
+</script>
+
+
+<!--Date-->
+<script type="text/ng-template" id="/dateInput.html">
+  <md-datepicker ng-model="$ctrl.ngModel[field.key]" class="md-block"
+                 md-placeholder="{{::field.label}}">
+  </md-datepicker>
+</script>
+
+
+<!--Message-->
+<script type="text/ng-template" id="/messages.html">
+  <div ng-messages="this[$ctrl.formName][field.key].$error"
+       ng-repeat="rule in field.validates"
+  >
+    <div ng-message="{{::rule.name}}">{{::rule.errorMsg}}</div>
+  </div>
+</script>
+
+
+<!--Label-->
+<script type="text/ng-template" id="/label.html">
+  <label class="capitalize">{{::field.label}}</label>
+</script>
+
+
+<!--View info-->
+<script type="text/ng-template" id="/view-info.html">
+  <md-list>
+    <md-list-item class="md-2-line">
+      <div class="md-list-item-text">
+        <h3>{{$ctrl.ngModel[field.key] || ' '}}</h3>
+        <p class="capitalize">{{::field.label}}</p>
+      </div>
+    </md-list-item>
+  </md-list>
+</script>
+
+
+<!--One column-->
+<script type="text/ng-template" id="/one-column.html">
+  <div class="up-down" ng-hide="$ctrl.vtOptions.isEdit">
+    <ng-include src="'/view-info.html'"></ng-include>
+  </div>
+  <div class="up-down" ng-show="$ctrl.vtOptions.isEdit">
+    <ng-include src="$ctrl.getInputTemplate(field.type)"></ng-include>
+  </div>
+</script>
+
+
+<!--Multi Column-->
+<script type="text/ng-template" id="/multi-column.html">
+  <div layout="row" layout-wrap="">
+    <div flex="" ng-repeat="field in field track by $index">
+      <div class="up-down" ng-hide="$ctrl.vtOptions.isEdit">
+        <ng-include src="'/view-info.html'"></ng-include>
+      </div>
+
+      <div class="up-down" ng-show="$ctrl.vtOptions.isEdit">
+        <ng-include src="$ctrl.getInputTemplate(field.type)"></ng-include>
+      </div>
+    </div>
+  </div>
+</script>

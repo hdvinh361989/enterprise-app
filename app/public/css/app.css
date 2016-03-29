@@ -28,7 +28,7 @@
 }
 
 /*Common*/
-vt-holds{
+vt-holds {
     margin: 0;
     width: 100%;
     min-height: 100%;
@@ -46,33 +46,49 @@ vt-holds{
     width: 5px;
     height: 5px;
 }
+
 ::-webkit-scrollbar-button {
     width: 0px;
     height: 0px;
 }
+
 ::-webkit-scrollbar-thumb {
-    background: rgba(63,81,181,0.4);
+    background: rgba(63, 81, 181, 0.4);
     border-radius: 50px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(63,81,181,1)
+    background: rgba(63, 81, 181, 1)
 }
+
 ::-webkit-scrollbar-thumb:active {
-    background: rgba(63,81,181,1)
+    background: rgba(63, 81, 181, 1)
 }
+
 ::-webkit-scrollbar-track {
     background: #ffffff;
     border: 0px none #d03131;
     border-radius: 50px;
 }
+
 ::-webkit-scrollbar-track:hover {
     background: #efefef;
 }
+
 ::-webkit-scrollbar-track:active {
     background: #efefef;
 }
+
 ::-webkit-scrollbar-corner {
     background: transparent;
+}
+
+input.ng-untouched + div.md-errors-spacer + div[ng-messages] {
+    visibility: hidden;
+}
+
+ng-include {
+    display: block;
 }
 
 /*End common*/
@@ -166,14 +182,13 @@ vt-holds{
 }
 
 .animate-clip {
-
+    transition: All 0.5s ease;
+    -webkit-transition: All 0.5s ease;
+    -moz-transition: All 0.5s ease;
+    -o-transition: All 0.5s ease;
 }
 
 .animate-clip.ng-enter {
-    transition: All 2s ease;
-    -webkit-transition: All 2s ease;
-    -moz-transition: All 2s ease;
-    -o-transition: All 2s ease;
     clip: rect(0px, 960px, 68px, 960px);
 }
 
@@ -182,10 +197,6 @@ vt-holds{
 }
 
 .animate-clip.ng-leave {
-    transition: All 2s ease;
-    -webkit-transition: All 2s ease;
-    -moz-transition: All 2s ease;
-    -o-transition: All 2s ease;
     clip: rect(0px, 960px, 68px, 0px)
 }
 
@@ -193,12 +204,29 @@ vt-holds{
     clip: rect(0px, 960px, 68px, 960px);
 }
 
+/*Up-down transition*/
+.up-down {
+    transition: 0.5s linear all;
+    -webkit-transition: 0.5s linear all;
+    -moz-transition: 0.5s linear all;
+    -o-transition: 0.5s linear all;
+    position: relative;
+    opacity: 1;
+    top: 0;
+}
+
+.up-down.ng-hide {
+    opacity: 0;
+    position: relative;
+    top: 200px;
+}
+
 /*Three column*/
 .three-column-wrapper .three-column-row .three-column-col {
     overflow-y: auto;;
 }
-/*End Three column*/
 
+/*End Three column*/
 
 /*Search-list-component*/
 .search-list-wrapper .list-wrapper md-list md-list-item .md-list-item-text p {
@@ -208,7 +236,8 @@ vt-holds{
 .search-list-wrapper .list-wrapper md-list md-list-item {
     padding-bottom: 16px;
 }
-vt-search-list .search-input md-input-container{
+
+vt-search-list .search-input md-input-container {
     margin-bottom: 0px;
 }
 

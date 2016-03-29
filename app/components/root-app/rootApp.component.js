@@ -1,13 +1,6 @@
 /**
  * Created by vinhhoang on 26/03/2016.
  */
-class testController {
-  constructor($scope) {
-    console.log($scope);
-
-  }
-}
-testController.$inject = ['$scope'];
 
 export class RootAppComponent {
   constructor($ocLazyLoad) {

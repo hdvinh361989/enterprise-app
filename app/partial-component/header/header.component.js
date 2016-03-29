@@ -1,6 +1,8 @@
 /**
  * Created by vinhhoang on 26/03/2016.
  */
+import {HeaderSer} from './header.service'
+
 let MODULE_NAME = 'vtcomponents.header', COMPONENT_NAME = 'vtHeader';
 
 class HeaderComp {
@@ -10,100 +12,35 @@ class HeaderComp {
     comp.restrict = 'E';
     comp.controller = HeaderCompController;
     comp.templateUrl = './partial-component/header/header.tpl.html';
-    comp.bindings = {
-      options: '='
-    }
+    comp.bindings = {}
   }
 }
 
 
 class HeaderCompController {
-  constructor() {
+  constructor(headerSer) {
     let ctrl = this;
     let defaultOptions, DIRECTION_BOTTOM = 'bottom';
 
-    defaultOptions = {
-      /**
-       * Menu
-       * Possible value
-       * {
-          label: 'Holds',
-          routeName: 'Holds'
-        }
-       * */
-      menus: [],
-
-      /**
-       * UserFab
-       * */
-      userFab: {
-        isOpen: false,
-        direction: 'down',
-        avatar: 'public/image/jessica.jpg',
-
-        /**
-         * Possible value: md-fling, md-scale
-         * */
-        animationMode: 'md-fling',
-
-        /**
-         * Possible value
-         * {
-         label: 'Setting',
-         tooltip: undefined,
-         tooltipDirection: 'left',
-         click: emptyFn,
-         icon: 'settings'
-         }
-         * */
-        actions: []
-      },
-
-      /**
-       * ToolbarFab
-       * */
-      toolbarFab: {
-        isOpen: false
-      },
-
-      /**
-       * Logo
-       * */
-      logo: 'public/logo.jpg',
-
-
-      /**Buttons
-       * Possible value
-       * {
-          label: 'add',
-          click: emptyFn,
-          tooltip: 'Add new entiry'
-        }
-       * */
-      controlButtons: [],
-
-      /**
-       * Process bar
-       * */
-      showProcessBar: false
-    };
-    ctrl.options = ctrl.options && Object.keys(ctrl.options).length > 0 ? angular.merge(defaultOptions, ctrl.options) : defaultOptions;
+    ctrl.options = headerSer.options;
 
     angular.forEach(ctrl.options.controlButtons, (v)=> {
       v.tooltipDirection = v.tooltipDirection || DIRECTION_BOTTOM;
     });
   }
 }
-HeaderCompController.$inject = [];
+HeaderCompController.$inject = [HeaderSer.name];
 
 function emptyFn() {
 }
 
 
 angular.module(MODULE_NAME, [])
-  .component(COMPONENT_NAME, new HeaderComp());
+  .component(COMPONENT_NAME, new HeaderComp())
+  .service(HeaderSer.name, HeaderSer);
 
 export let HeaderComponent = {
   name: MODULE_NAME,
   compName: COMPONENT_NAME
 };
+export let HeaderService = HeaderSer.name;

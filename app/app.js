@@ -19,6 +19,7 @@ export let App = angular.module(APP_NAME, [
     'oc.lazyLoad',
     'ngMaterial',
     'ngAria',
+    'ngAnimate',
     ModuleLoader.name
   ])
   .value('$routerRootComponent', RootAppComponent.name)

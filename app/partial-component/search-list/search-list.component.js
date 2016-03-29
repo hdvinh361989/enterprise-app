@@ -3,6 +3,7 @@
  */
 let MODULE_NAME = 'vtcomponent.searchList', COMPONENT_NAME = 'vtSearchList';
 
+
 class Component {
   constructor() {
     let comp = this;
@@ -11,32 +12,51 @@ class Component {
     comp.templateUrl = './partial-component/search-list/search-list.tpl.html';
     comp.controller = CompController;
     comp.bindings = {
-      options: '=',
-      dataset: '='
+      'vtSearch': '&',
+      'vtDataSet': '<',
+      'vtDelay': '@',
+      'vtOnSelect': '&'
     }
   }
 }
 
 
-//1288323623006
 class CompController {
-  constructor() {
-    let ctrl = this, defaultOptions;
+  constructor($q, $timeout) {
+
+
+    let ctrl = this;
+    ctrl._q = $q;
+    ctrl._timeout = $timeout;
 
     ctrl.searchQuery = '';
 
-    //Init defaultOptions
-    defaultOptions = {
-
-    };
-
+    $q.resolve(ctrl.vtDataSet)
+      .then((dataset)=> ctrl.vtOnSelect({'$selected': dataset[0]}));
   }
 
-  onSearch($event){
+  //Search handler
+  onSearch($event) {
+    let ctrl = this;
 
+    if (ctrl.timeoutPromise)
+      ctrl._timeout.cancel(ctrl.timeoutPromise);
+
+    ctrl.timeoutPromise = ctrl._timeout(()=> {
+      ctrl.vtSearch({vtQuery: ctrl.searchQuery})
+    }, parseInt(ctrl.vtDelay))
+  }
+
+  onSelectItem(item) {
+    let ctrl = this;
+    ctrl.vtOnSelect({'$selected': item});
   }
 }
-CompController.$inject = [];
+CompController.$inject = ['$q', '$timeout'];
+
+
+function empty() {
+}
 
 
 angular.module(MODULE_NAME, [])

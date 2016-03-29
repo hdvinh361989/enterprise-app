@@ -1,0 +1,134 @@
+<div flex="" layout="column" layout-fill="">
+  <vt-header options="$ctrl.headerOptions"></vt-header>
+
+  <vt-three-column flex layout="column">
+
+    <column1>
+      <vt-search-list vt-delay="500" vt-search="$ctrl.onSearch(vtQuery)"
+                      vt-data-set="$ctrl.holds" vt-on-select="$ctrl.onSelect($selected)"></vt-search-list>
+    </column1>
+
+    <column2>
+      <vt-form-generator ng-model="$ctrl.newHold"
+                         vt-fields="$ctrl.formFields"
+                         vt-options="$ctrl.formOptions"
+      ></vt-form-generator>
+    </column2>
+
+    <column3>
+      <md-card ng-cloak>
+        <!--Toolbar-->
+        <md-toolbar class="md-table-toolbar md-default"
+                    ng-hide="$ctrl.tableOptions.rowSelection && $ctrl.rowSelected.length">
+          <div class="md-toolbar-tools">
+            <span>Criteria</span>
+          </div>
+        </md-toolbar>
+
+        <!--Alter toolbar-->
+        <md-toolbar class="md-table-toolbar alternate"
+                    ng-show="$ctrl.tableOptions.rowSelection && $ctrl.rowSelected.length"
+        >
+          <div class="md-toolbar-tools">
+            <span>{{$ctrl.rowSelected.length}}
+              {{' ' + $ctrl.rowSelected.length > 1 ? 'item' : 'items'}}</span>
+            <div flex></div>
+            <md-button class="md-fab md-mini md-raised md-warn"
+                       ng-click="$ctrl.onCriteriaRemove()">
+              <md-icon>delete</md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+
+        <!--Table-->
+        <md-table-container>
+          <table md-table md-row-select="$ctrl.tableOptions.rowSelection"
+                 multiple="{{$ctrl.tableOptions.multiSelect}}" ng-model="$ctrl.rowSelected"
+                 md-progress="$ctrl.tableProgress"
+          >
+            <thead md-head md-order="$ctrl.query.order">
+            <tr md-row>
+              <th md-column md-order-by="fieldName">
+                <span>Field Name</span>
+              </th>
+
+              <th md-column>
+                <span>Filter</span>
+              </th>
+
+              <th md-column>
+                <span>Value</span>
+              </th>
+            </tr>
+            </thead>
+
+            <tbody md-body>
+            <tr md-row ng-show="$ctrl.isEdit">
+              <td md-cell>
+                <md-select ng-model="$ctrl.newCrit.fieldName"
+                           placeholder="Others">
+                  <md-option ng-repeat="option in $ctrl.getFieldName()">{{::option}}</md-option>
+                </md-select>
+              </td>
+
+              <td md-cell>
+                <md-select ng-model="$ctrl.newCrit.filter"
+                           placeholder="Others">
+                  <md-option ng-repeat="option in $ctrl.getFilter()">{{::option}}</md-option>
+                </md-select>
+              </td>
+
+              <td md-cell>
+                <md-input-container>
+                  <label>Value</label>
+                  <input type="text" ng-keypress="$ctrl.onKeyPress($event)"
+                         ng-model="$ctrl.newCrit.value"
+                  >
+                </md-input-container>
+              </td>
+            </tr>
+
+            <tr md-row md-select="criteria"
+                md-auto-select="$ctrl.tableOptions.autoSelect"
+                ng-repeat="criteria in $ctrl.newHold.criterias
+                  | orderBy: $ctrl.query.order
+                  | limitTo: query.limit : (query.page -1) * query.limit"
+            >
+              <td md-cell>
+                <span ng-hide="$ctrl.isEdit">{{criteria.fieldName}}</span>
+
+                <md-select ng-show="$ctrl.isEdit"
+                           ng-model="criteria.fieldName"
+                           placeholder="Others">
+                  <md-option ng-repeat="option in $ctrl.getFieldName()">{{::option}}</md-option>
+                </md-select>
+              </td>
+
+              <td md-cell>
+                <span ng-hide="$ctrl.isEdit">{{criteria.fieldName}}</span>
+
+                <md-select ng-show="$ctrl.isEdit"
+                           ng-model="criteria.filter"
+                           placeholder="Others">
+                  <md-option ng-repeat="option in $ctrl.getFilter()">{{::option}}</md-option>
+                </md-select>
+              </td>
+
+              <td md-cell>
+                <span ng-hide="$ctrl.isEdit">{{criteria.fieldName}}</span>
+
+                <md-input-container ng-show="$ctrl.isEdit">
+                  <input type="text" placeholder="Value"
+                         ng-model="criteria.value"
+                  >
+                </md-input-container>
+              </td>
+            </tr>
+            </tbody>
+
+          </table>
+        </md-table-container>
+      </md-card>
+    </column3>
+  </vt-three-column>
+</div>

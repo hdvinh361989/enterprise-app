@@ -30,9 +30,10 @@
 
         <!--Control box-->
         <div class="controls-wrapper" flex layout="row" layout-align="center">
-          <md-button aria-label="{{button.label}}"
+          <md-button ng-disabled="button.isDisabled"
+                     aria-label="{{button.label}}"
                      ng-repeat="button in $ctrl.options.controlButtons track by $index"
-                     ng-click="button.click($event)"
+                     ng-click="button.click(button, $ctrl.options.controlButtons)"
           >
             <md-tooltip md-direction="{{button.tooltipDirection}}"
                         class="capitalize"
