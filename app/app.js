@@ -3,6 +3,8 @@ import './libs/oclazyload/dist/ocLazyLoad'
 import './libs/angular-aria/angular-aria.min'
 import './libs/angular-material/angular-material'
 import {ModuleLoader} from 'services/module-loader'
+import {ProgressUtil_Module} from './partial-component/progress-util/progress-util.directive'
+
 
 import {Configuration} from './config'
 import {RunTime} from './runtime'
@@ -20,7 +22,8 @@ export let App = angular.module(APP_NAME, [
     'ngMaterial',
     'ngAria',
     'ngAnimate',
-    ModuleLoader.name
+    ModuleLoader.name,
+    ProgressUtil_Module.name
   ])
   .value('$routerRootComponent', RootAppComponent.name)
 

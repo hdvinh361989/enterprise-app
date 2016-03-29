@@ -32,8 +32,10 @@ class HoldsComp {
 let _holdSer;
 
 class HoldsCompController {
-  constructor(holdSer, headerSer) {
+  constructor(holdSer, headerSer, $rootScope) {
     _holdSer = holdSer;
+
+    $rootScope.$broadcast('progress-bar-hide');
 
     let ctrl = this;
 
@@ -287,7 +289,7 @@ class HoldsCompController {
     return _holdSer.getUUID();
   }
 }
-HoldsCompController.$inject = [HoldsService.name, HeaderService];
+HoldsCompController.$inject = [HoldsService.name, HeaderService, '$rootScope'];
 
 function emptyFn() {
 }

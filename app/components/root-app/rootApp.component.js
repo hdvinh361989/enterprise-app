@@ -7,6 +7,10 @@ export class RootAppComponent {
     let comp = this;
 
     comp.template = `
+    <div layout="column" layout-fill="" layout-align="center center">
+      <h1>Welcome To My Service</h1>
+      <md-progress-circular vt-progress-util md-mode="{{$ctrl.progressMode}}" md-diameter="96"></md-progress-circular>
+    </div>
     <div class="root-app-wrapper" layout="column" layout-fill>
       <ng-outlet flex="" layout="column" layout-fill=""></ng-outlet>
     </div>
@@ -24,10 +28,20 @@ export class RootAppComponent {
       }
     ];
 
+    comp.controller = RootAppController
+
   }
 
   static get name() {
     return 'rootApp';
   }
 }
-RootAppComponent.$inject = ['$ocLazyLoad', '$rootScope'];
+
+
+class RootAppController {
+  constructor() {
+    let ctrl = this;
+
+    ctrl.progressMode = 'indeterminate';
+  }
+}
